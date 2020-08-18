@@ -1,14 +1,14 @@
 import React from "react";
 
-function Control() {
+function Control(props) {
   const onClickPlus = () => {
-    console.log("+");
+    props.onPlus();
   };
   const onClickMinus = () => {
-    console.log("-");
+    props.onMinus();
   };
   const onClickChangeBg = () => {
-    console.log("Change bg");
+    props.onChangeBg();
   };
   return (
     <div>
