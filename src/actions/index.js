@@ -1,20 +1,27 @@
 import * as types from "./ActionTypes";
-
-export function increment() {
+export function changeWidthSize(widthSize) {
   return {
-    type: types.INCREMENT,
+    type: types.CHANGE_WIDTH_SIZE,
+    widthSize
   };
 }
 
-export function decrement() {
+export function changeHeightSize(heightSize) {
   return {
-    type: types.DECREMENT,
+    type: types.CHANGE_HEIGHT_SIZE,
+    heightSize
   };
 }
 
-export function changeBg(color) {
+export function changeProbability(probability){
+  return{
+    type: types.CHANGE_PROBABILITY,
+    probability
+  }
+}
+
+export function clickCreateBtn() {
   return {
-    type: types.CHANGE_BG,
-    color,
+    type: types.CLICK_CREATE_BTN
   };
 }
