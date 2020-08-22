@@ -1,6 +1,7 @@
 import React from "react";
 import Control from "./Control";
 import Map from './Map';
+import Character from './Character';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions";
@@ -14,6 +15,13 @@ function Game(props) {
         onClickCreateBtn = {props.clickCreateBtn}
       />
       <Map mapInfo={props.mapInfo}/>
+      <Character
+        characterX = {props.characterX}
+        characterY = {props.characterY}
+        onKeyDownUp = {props.moveUpCharacter}
+        onKeyDownDown = {props.moveDownCharacter}
+        onKeyDownLeft = {props.moveLeftCharacter}
+        onKeyDownRight = {props.moveRightCharacter}/>
     </div>
   );
 }
@@ -21,7 +29,9 @@ const mapStateToProps = (state) => {
   return {
     widthSize: state.control.widthSize,
     heightSize: state.control.heightSize,
-    mapInfo: state.control.mapInfo
+    mapInfo: state.control.mapInfo,
+    characterX: state.character.characterX,
+    characterY: state.character.characterY
   };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { DEFAULT_WIDTH_SIZE, DEFAULT_HEIGHT_SIZE, DEFAULT_PROBABILITY } from '../config';
 const TextField = styled.input`
   height: 1.5rem;
   width: 5rem;
@@ -39,11 +40,11 @@ function Control(props) {
   return (
     <HorizontalDiv>
       <Typography> 가로 </Typography>
-      <TextField onChange={onChangeWidthSize} defaultValue={2}/>
+      <TextField onChange={onChangeWidthSize} defaultValue={DEFAULT_WIDTH_SIZE} />
       <Typography> 세로 </Typography>
-      <TextField onChange={onChangeHeightSize} defaultValue={2}/>
+      <TextField onChange={onChangeHeightSize} defaultValue={DEFAULT_HEIGHT_SIZE} />
       <Typography> 확률 </Typography>
-      <TextField onChange={onChangeProbability} defaultValue={25}/>
+      <TextField onChange={onChangeProbability} defaultValue={DEFAULT_PROBABILITY} />
       <Button onClick={onClickCreateBtn}>생성</Button>
     </HorizontalDiv>
   );

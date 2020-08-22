@@ -25,3 +25,27 @@ export function clickCreateBtn() {
     type: types.CLICK_CREATE_BTN
   };
 }
+
+export function moveUpCharacter(){
+  return{
+    type: types.MOVE_UP_CHARACTER
+  }
+}
+
+export function moveDownCharacter(){
+  return{
+    type: types.MOVE_DOWN_CHARACTER
+  }
+}
+
+export function moveRightCharacter(){
+  return{
+    type: types.MOVE_RIGHT_CHARACTER
+  }
+}
+
+export function moveLeftCharacter(){
+  return{
+    type: types.MOVE_LEFT_CHARACTER
+  }
+}

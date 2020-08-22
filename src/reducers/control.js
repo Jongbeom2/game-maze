@@ -1,32 +1,39 @@
 import * as types from "../actions/ActionTypes";
-const START_X = 2;
-const START_Y = 9;
-const SIZE = 5;
-const initialState = {
-  widthSize: 2,
-  heightSize: 2,
-  probability: 25,
-  mapInfo: [
-    [
-      { x: START_X, y: START_Y, size: SIZE, isEmpty: true },
-      { x: START_X + SIZE, y: START_Y, size: SIZE, isEmpty: true },
-    ],
-    [
-      { x: START_X, y: START_Y + SIZE, size: SIZE, isEmpty: false },
-      { x: START_X + SIZE, y: START_Y + SIZE, size: SIZE, isEmpty: true },
-    ],
-  ],
-};
+import {START_X, START_Y, SIZE, DEFAULT_WIDTH_SIZE,DEFAULT_HEIGHT_SIZE,DEFAULT_PROBABILITY} from '../config';
+// 맵의 가로 사이즈, 세로 사이즈, 확률을 이용하여 맵을 생성하고 반환
+const getMapInfo = (widthSize, heightSize, probability) => {
+  const mapInfo = [];
+  for (let i = 0; i < heightSize; i++) {
+    const tempInfo = [];
+    for (let j = 0; j < widthSize; j++) {
+      tempInfo.push({
+        x: START_X + j * SIZE,
+        y: START_Y + i * SIZE,
+        size: SIZE,
+        isEmpty: ((i===0&&j===0)||(i===heightSize-1&&j===widthSize-1))?true:getIsEmpty(probability),
+      });
+    }
+    mapInfo.push(tempInfo);
+  }
+  return mapInfo
+}
+// 확률을 이용하여 비어있는지 여부를 반환
 const getIsEmpty = (probability)=>{
   const value = Math.random()*100;
-  console.log(value,parseInt(probability))
   if(value>parseInt(probability)){
     return true;
   }else{
     return false;
   }
 }
+const initialState = {
+  widthSize: DEFAULT_WIDTH_SIZE,
+  heightSize: DEFAULT_HEIGHT_SIZE,
+  probability: DEFAULT_PROBABILITY,
+  mapInfo: getMapInfo(DEFAULT_WIDTH_SIZE,DEFAULT_HEIGHT_SIZE,DEFAULT_PROBABILITY)
+};
 export default function control(state = initialState, action) {
+  console.log(state);
   switch (action.type) {
     case types.CHANGE_WIDTH_SIZE:
       return {
@@ -44,19 +51,7 @@ export default function control(state = initialState, action) {
         probability: action.probability
       }
     case types.CLICK_CREATE_BTN:
-      const mapInfo = [];
-      for (let i = 0; i < state.heightSize; i++) {
-        const tempInfo = [];
-        for (let j = 0; j < state.widthSize; j++) {
-          tempInfo.push({
-            x: START_X + j * SIZE,
-            y: START_Y + i * SIZE,
-            size: SIZE,
-            isEmpty: ((i===0&&j===0)||(i===state.heightSize-1&&j===state.widthSize-1))?true:getIsEmpty(state.probability),
-          });
-        }
-        mapInfo.push(tempInfo);
-      }
+      const mapInfo = getMapInfo(state.widthSize,state.heightSize,state.probability)
       return {
         ...state,
         mapInfo,
