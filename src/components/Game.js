@@ -30,8 +30,8 @@ const mapStateToProps = (state) => {
     widthSize: state.control.widthSize,
     heightSize: state.control.heightSize,
     mapInfo: state.control.mapInfo,
-    characterX: state.character.characterX,
-    characterY: state.character.characterY
+    characterX: state.control.characterX,
+    characterY: state.control.characterY
   };
 };
 const mapDispatchToProps = (dispatch) => {
