@@ -1,7 +1,7 @@
 import React from "react";
 import Control from "./Control";
-import Map from './Map';
-import Character from './Character';
+import Map from "./Map";
+import Character from "./Character";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions";
@@ -12,16 +12,21 @@ function Game(props) {
         onChangeWidthSize={props.changeWidthSize}
         onChangeHeightSize={props.changeHeightSize}
         onChangeProbability={props.changeProbability}
-        onClickCreateBtn = {props.clickCreateBtn}
+        onClickCreateBtn={props.clickCreateBtn}
       />
-      <Map mapInfo={props.mapInfo}/>
+      <Map mapInfo={props.mapInfo} />
       <Character
-        characterX = {props.characterX}
-        characterY = {props.characterY}
-        onKeyDownUp = {props.moveUpCharacter}
-        onKeyDownDown = {props.moveDownCharacter}
-        onKeyDownLeft = {props.moveLeftCharacter}
-        onKeyDownRight = {props.moveRightCharacter}/>
+        reStartGame={props.clickCreateBtn}
+        characterX={props.characterX}
+        characterY={props.characterY}
+        widthSize={props.widthSize}
+        heightSize={props.heightSize}
+        onKeyDownUp={props.moveUpCharacter}
+        onKeyDownDown={props.moveDownCharacter}
+        onKeyDownLeft={props.moveLeftCharacter}
+        onKeyDownRight={props.moveRightCharacter}
+        checkGameOver={props.checkGameOver}
+      />
     </div>
   );
 }
@@ -31,7 +36,7 @@ const mapStateToProps = (state) => {
     heightSize: state.control.heightSize,
     mapInfo: state.control.mapInfo,
     characterX: state.control.characterX,
-    characterY: state.control.characterY
+    characterY: state.control.characterY,
   };
 };
 const mapDispatchToProps = (dispatch) => {
